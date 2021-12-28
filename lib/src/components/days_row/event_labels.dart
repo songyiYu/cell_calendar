@@ -23,14 +23,8 @@ class EventLabels extends StatelessWidget {
 
   final DateTime date;
 
-  List<CalendarEvent> _eventsOnTheDay(
-      DateTime date, List<CalendarEvent> events) {
-    final res = events
-        .where((event) =>
-            event.eventDate.year == date.year &&
-            event.eventDate.month == date.month &&
-            event.eventDate.day == date.day)
-        .toList();
+  List<CalendarEvent> _eventsOnTheDay(DateTime date, List<CalendarEvent> events) {
+    final res = events.where((event) => event.eventDate.year == date.year && event.eventDate.month == date.month && event.eventDate.day == date.day).toList();
     return res;
   }
 
@@ -56,8 +50,7 @@ class EventLabels extends StatelessWidget {
           return const SizedBox.shrink();
         }
         final eventsOnTheDay = _eventsOnTheDay(date, events);
-        final hasEnoughSpace =
-            _hasEnoughSpace(cellHeight, eventsOnTheDay.length);
+        final hasEnoughSpace = _hasEnoughSpace(cellHeight, eventsOnTheDay.length);
         final maxIndex = _maxIndex(cellHeight, eventsOnTheDay.length);
         return ListView.builder(
           physics: NeverScrollableScrollPhysics(),
@@ -107,10 +100,7 @@ class _EventLabel extends StatelessWidget {
       color: event.eventBackgroundColor,
       child: Text(
         event.eventName,
-        style: TextStyle(
-            color: event.eventTextColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 11),
+        style: TextStyle(color: event.eventTextColor, fontSize: 10),
         textAlign: TextAlign.center,
         overflow: TextOverflow.ellipsis,
       ),
